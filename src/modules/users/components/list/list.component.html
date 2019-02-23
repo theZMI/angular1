@@ -1,0 +1,7 @@
+<router-outlet></router-outlet>
+<ul *ngIf="users">
+  <li *ngFor="let user of users">
+    <user-preview [id]="user.id"></user-preview>
+    <a [routerLink]="'/users/list/edit/' + user.id" [innerHtml]="user.id + ': ' + user.name"></a>
+  </li>
+</ul>

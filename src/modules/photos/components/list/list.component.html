@@ -1,0 +1,5 @@
+<ul *ngIf="photos">
+  <li *ngFor="let photo of photos">
+    <span [innerHtml]="photo.id + ': ' + photo.url"></span>
+  </li>
+</ul>
