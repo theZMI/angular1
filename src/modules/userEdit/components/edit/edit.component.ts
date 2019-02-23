@@ -32,6 +32,7 @@ export class EditComponent implements OnInit {
   save(): void {
     this.apiService.saveUser(this.user.id, this.user).subscribe(
       () => {
+        this.apiService.listChanged.emit(true);
         this.router.navigate(['/users/list']);
       }
     );
