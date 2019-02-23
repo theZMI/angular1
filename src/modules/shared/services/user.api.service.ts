@@ -19,8 +19,6 @@ window['test'] = [
 @Injectable()
 export class UserApiService {
   
-  listChanged = new EventEmitter<boolean>();
-  
   readonly ROOT_URL = 'http://t.local/api/';
   /*
   private list: UserInterface[] = [

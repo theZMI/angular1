@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { UserApiService, UserInterface } from '../../../shared/services/user.api.service';
+import { UserInterface } from '../../../shared/services/user.api.service';
+import { UserStateService } from '../../../shared/services/user.state.service';
 
 
 @Component({
@@ -11,19 +12,11 @@ export class ListComponent implements OnInit {
 
   users: UserInterface[] = null;
 
-  constructor(private apiService: UserApiService) { }
+  constructor(private stateService: UserStateService) { }
 
   ngOnInit() {
-    this.apiService.getUsers().subscribe(data => {
+    this.stateService.getUsers().subscribe(data => {
       this.users = data;
     });
-    
-    this.apiService.listChanged.subscribe(
-      () => {
-        this.apiService.getUsers().subscribe(data => {
-            this.users = data;
-        });
-      }
-    );
   }
 }

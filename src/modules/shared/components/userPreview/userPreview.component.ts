@@ -1,5 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { UserApiService, UserInterface } from '../../services/user.api.service';
+
+import { UserInterface } from '../../services/user.api.service';
+import { UserStateService } from '../../services/user.state.service';
 
 
 @Component({
@@ -11,11 +13,11 @@ export class UserPreviewComponent implements OnInit {
   @Input() id: number = 0;
   user: UserInterface = null;
 
-  constructor(private apiService: UserApiService) {
+  constructor(private stateService: UserStateService) {
   }
 
   ngOnInit() {
-    this.apiService.getUser(this.id).subscribe(data => {
+    this.stateService.getUser(this.id).subscribe(data => {
       this.user = data;
     });
   }

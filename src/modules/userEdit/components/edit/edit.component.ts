@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { UserApiService, UserInterface } from '../../../shared/services/user.api.service';
+import { UserInterface } from '../../../shared/services/user.api.service';
+import { UserStateService } from '../../../shared/services/user.state.service';
 
 
 @Component({
@@ -14,7 +15,7 @@ export class EditComponent implements OnInit {
   user: UserInterface = null;
 
   constructor(
-      private apiService: UserApiService,
+      private stateService: UserStateService,
       private router: Router,
       private activatedRoute: ActivatedRoute
   ) { }
@@ -22,7 +23,7 @@ export class EditComponent implements OnInit {
   ngOnInit() {
     this.activatedRoute.params.subscribe(
       data => {
-        this.apiService.getUser(data.id).subscribe(data => {
+        this.stateService.getUser(data.id).subscribe(data => {
           this.user = data;
         });
       }
@@ -30,9 +31,8 @@ export class EditComponent implements OnInit {
   }
 
   save(): void {
-    this.apiService.saveUser(this.user.id, this.user).subscribe(
+    this.stateService.saveUser(this.user.id, this.user).subscribe(
       () => {
-        this.apiService.listChanged.emit(true);
         this.router.navigate(['/users/list']);
       }
     );

@@ -3,6 +3,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgModule, ModuleWithProviders } from '@angular/core';
 
 import { UserApiService } from './services/user.api.service';
+import { UserStateService } from './services/user.state.service';
 import { UserPreviewComponent } from './components/userPreview/userPreview.component';
 
 
@@ -22,7 +23,7 @@ export class SharedModule {
   static forRoot(): ModuleWithProviders {
     return {
       ngModule: SharedModule,
-      providers: [ UserApiService ]
+      providers: [ UserApiService, UserStateService ]
     }
   }
 }
